@@ -1,0 +1,40 @@
+{
+	"name":"Some name for the conversation",
+	"start":"1424791485315",
+	"elements":{
+		"1424791485315":{
+			"character":"player",
+			"position":"left",
+			"options":{
+				"1":{
+					"text":"Text 1",
+					"followup":"1424791562420"
+				},
+				"2":{
+					"text":"Text 2",
+					"followup":"1424791601252"
+				}
+			}
+		},
+		"1424791562420":{
+			"character":"peli",
+			"position":"right",
+			"options":{
+				"1":{
+					"text":"Text 3",
+					"followup":"null"
+				}
+			}
+		},
+		"1424791601252":{
+			"character":"player",
+			"position":"right",
+			"options":{
+				"1":{
+					"text":"Text 4",
+					"followup":"null"
+				}
+			}
+		}
+	}
+}

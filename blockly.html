@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!--<meta charset="utf-8">-->
+    <script src="js/blockly/libraries/jquery-2.1.1.js"></script>
+
+    <!--4 files for Blockly-->
+    <script src="js/blockly/libraries/blockly_compressed.js"></script>
+
+    <!--<script src="js/libraries/blocks_compressed.js"></script>-->
+    <!--REPLACING SINGLE FILE WITH UNCOMPRESSED-->
+    <script src="js/blockly/libraries/blocks/logic.js"></script>
+
+    <!--Modified repeat block-->
+    <script src="js/blockly/libraries/blocks/loops.js"></script>
+
+    <script src="js/blockly/libraries/blocks/math.js"></script>
+    <script src="js/blockly/libraries/blocks/text.js"></script>
+    <script src="js/blockly/libraries/blocks/lists.js"></script>
+    <script src="js/blockly/libraries/blocks/colour.js"></script>
+    <script src="js/blockly/libraries/blocks/variables.js"></script>
+    <script src="js/blockly/libraries/blocks/procedures.js"></script>
+  <!--<script src="js/libraries/javascript_compressed.js"></script>-->
+    <!--REPLACING SINGLE FILE WITH UNCOMPRESSED-->
+    <script src="js/blockly/libraries/generators/javascript.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/logic.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/loops.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/math.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/text.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/lists.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/colour.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/variables.js"></script>
+    <script src="js/blockly/libraries/generators/javascript/procedures.js"></script>
+    <script src="js/blockly/msg/js/en.js"></script>
+
+    <script src="js/blockly/libraries/acorn_interpreter.js"></script>
+
+    <!-- CUSTOM BLOCKS -->
+    <script src="js/blockly/custom/blocks/start.js"></script>
+    <script src="js/blockly/custom/blocks/collectible_number.js"></script>
+    <script src="js/blockly/custom/blocks/walk.js"></script>
+    <script src="js/blockly/custom/blocks/forward.js"></script>
+    <script src="js/blockly/custom/blocks/turn_right.js"></script>
+    <script src="js/blockly/custom/blocks/turn_left.js"></script>
+    <script src="js/blockly/custom/blocks/jump.js"></script>
+    <script src="js/blockly/custom/blocks/super_jump.js"></script>
+    <script src="js/blockly/custom/blocks/long_jump.js"></script>
+    <script src="js/blockly/custom/blocks/empty.js"></script>
+    <script src="js/blockly/custom/blocks/empty_cell.js"></script>
+    <script src="js/blockly/custom/blocks/empty_cell_left.js"></script>
+    <script src="js/blockly/custom/blocks/empty_cell_right.js"></script>
+    <script src="js/blockly/custom/blocks/obstacle.js"></script>
+    <script src="js/blockly/custom/blocks/obstacle2.js"></script>
+    <script src="js/blockly/custom/blocks/obstacle3.js"></script>
+    <script src="js/blockly/custom/blocks/obstacle4.js"></script>
+    <script src="js/blockly/custom/blocks/target.js"></script>
+    <script src="js/blockly/custom/blocks/target2.js"></script>
+    <script src="js/blockly/custom/blocks/repeat_until.js"></script>
+    <script src="js/blockly/custom/blocks/repeat_while.js"></script>
+
+    <style>
+      html, body {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+      .blocklySvg {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <script>
+      function init() {
+        Blockly.inject(document.body, 
+              {
+                toolbox: document.getElementById('toolbox'), 
+                maxBlocks: 9,
+                scrollbars: false,
+              });
+        // Let the top-level application know that Blockly is ready.
+        window.parent.blocklyLoaded(Blockly);
+
+        function onchange() {
+          var blocksLeft = Blockly.mainWorkspace.remainingCapacity();
+          console.log(blocksLeft + " blocks left");
+        }
+        Blockly.addChangeListener(onchange);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <xml id="toolbox" style="display: none">
+      <block type="forward"></block>
+      <block type="turn_left"></block>
+      <block type="turn_right"></block>
+      <block type="controls_repeat">
+        <field name="TIMES">3</field>
+      </block>
+
+      <block type="controls_repeat_ext">
+      </block>
+
+      <block type="math_number" editable="false">
+        <field name="NUM">3</field>
+      </block>
+      
+      <!-- <block type="controls_for">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block> -->
+
+       <!-- <category name="Core"> -->
+        <!-- <category name="Control"> -->
+          <!-- <block type="controls_if"></block>
+          <block type="controls_whileUntil"></block> -->
+        <!-- </category> -->
+        <!-- <category name="Logic"> -->
+          <!-- <block type="logic_compare"></block>
+          <block type="logic_operation"></block>
+          <block type="logic_boolean"></block> -->
+        <!-- </category> -->
+      <!-- </category> -->
+    </xml>
+  </body>
+</html>

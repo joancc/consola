@@ -1,0 +1,157 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Consola</title>
+	
+	<!-- PARSE -->
+	<script src="js/parse-1.4.2.js"></script>
+	<script>
+		 // Initialize the Parse SDK!
+		Parse.initialize("1n8HoRFpjeQ97tBZc7DaefumIDakiaKSconYPlDR","UyJlN8LWRXnxL8ZOpJUA9PHJAo0SOv6Z8TPmxl6f");
+		// var user = new Parse.User();
+		// user.set("username", "test");
+		// user.set("password", "password1");
+		// user.set("email", "test@test.com");
+		// user.signUp(null, {
+		//   success: function(user) {
+		//     console.log("User signedup");
+		// 		// Simple syntax to create a new subclass of Parse.Object.
+		// 		var Inventory = Parse.Object.extend("Inventory");
+				 
+		// 		// Create a new instance of that class.
+		// 		var inventory = new Inventory();
+		// 		inventory.set("user", Parse.User.current());
+		// 		inventory.save();
+		//   },
+		//   error: function(user, error) {
+		//     // Show the error message somewhere and let the user try again.
+		//     alert("Error: " + error.code + " " + error.message);
+		//   }
+		// });
+
+		
+		Parse.User.logOut();
+		Parse.User.logIn("test", "password1", {
+		  success: function(user) {
+		    //Get users inventory
+		    var Inventory = Parse.Object.extend("Inventory");
+			var query = new Parse.Query(Inventory);
+			query.equalTo("user", Parse.User.current());
+			query.find({
+			  success: function(inventory) {
+			    // The object was retrieved successfully.
+			    window.inventory = inventory[0];
+			    console.log(inventory.toJSON());
+			  },
+			  error: function(object, error) {
+			    // The object was not retrieved successfully.
+			    console.log("PARSE ERROR");
+			    console.log(object);
+			    console.log(error);
+			  }
+			});			
+		  },
+		  error: function(user, error) {
+		    // The login failed. Check error to see why.
+		  }
+		});
+	</script>
+
+
+	<!-- PHASER -->
+	<script type="text/javascript" src="js/phaser/phaser.min.js"></script>
+
+	<!-- PHASER PLUGINS -->
+	<script type="text/javascript" src="js/phaser/plugins/AStar.js"></script>
+
+	<!-- PHASER CUSTOM OBJECTS -->
+	<script type="text/javascript" src="js/phaser/objects/Player.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/Enemy.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/EnemyLooper.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/EnemyFollow.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/EnemyFollowSmart.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/Projectile.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/Exit.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/PressurePlate.js"></script>
+	<script type="text/javascript" src="js/phaser/objects/Collectible.js"></script>
+
+	<script type="text/javascript" src="js/phaser/objects/Dialogue.js"></script>
+
+	<!-- PHASER STATES -->
+	<script type="text/javascript" src="js/phaser/states/Boot.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Preload.js"></script>
+	<script type="text/javascript" src="js/phaser/states/MainMenu.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Game.js"></script>
+
+	<!-- LEVELS -->
+	<script type="text/javascript" src="js/phaser/states/Intro.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Level1.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Level2.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Level3.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Level4.js"></script>
+	<script type="text/javascript" src="js/phaser/states/Test.js"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+
+    <!-- BLOCKLY -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- MODAL -->
+    <link rel="stylesheet" href="css/modal.css">
+
+	<script src="js/blockly/libraries/jquery-2.1.1.js"></script>
+	<script src="js/blockly/libraries/acorn_interpreter.js"></script>
+	<script src="js/blockly/_blockly.js"></script>
+	<script src="js/blockly/main.js"></script>
+</head>
+<body>
+	<!-- MAIN BLOCKLY -->
+	<script>
+	  function blocklyLoaded(blockly) {
+	    // Called once Blockly is fully loaded.
+	    window.Blockly = blockly;
+	    initialize(); //From main.js
+	  }
+	</script>
+	<iframe src="blockly.html"></iframe>
+	<button id="run">Run</button>
+	<button id="parserMode">Parser Mode</button>
+
+	<!-- MAIN PHASER -->
+	<div id="gameContainer">
+	</div>
+	<script type="text/javascript" src="js/phaser/main.js"></script>
+
+
+	<xml id="phaserToolbox" style="display: none">
+	  <category name="Blocks">
+	    <block type="logic_boolean"></block>
+	    <block type="math_number">
+	      <field name="NUM">42</field>
+	    </block>
+	    <block type="controls_for">
+	      <value name="FROM">
+	        <block type="math_number">
+	          <field name="NUM">1</field>
+	        </block>
+	      </value>
+	      <value name="TO">
+	        <block type="math_number">
+	          <field name="NUM">10</field>
+	        </block>
+	      </value>
+	      <value name="BY">
+	        <block type="math_number">
+	          <field name="NUM">1</field>
+	        </block>
+	      </value>
+	    </block>
+	  </category>
+	</xml>
+</body>
+</html>
